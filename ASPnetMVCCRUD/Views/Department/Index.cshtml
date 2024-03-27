@@ -1,0 +1,25 @@
+﻿@model  List<ASPnetMVCCRUD.Models.Domain.Department>
+
+@{
+}
+
+<h1>Department</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>DepartmentID</th>
+            <th>DepartmentName</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>@department.DepartmentId</td>
+                <td>@department.DepartmentName</td>
+            </tr>
+        }
+    </tbody>
+</table>       
