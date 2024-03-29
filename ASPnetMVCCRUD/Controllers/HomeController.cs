@@ -13,12 +13,11 @@ namespace ASPnetMVCCRUD.Controllers
             _logger = logger;
         }
 
-        // public IActionResult Index()
-        // {
+        public IActionResult Index()
+        {
 
-        //    string "/Api/controolername/functionname";
-        //    return View();
-        // }
+           return View();
+        }
 
         public IActionResult Privacy()
         {

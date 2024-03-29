@@ -26,30 +26,32 @@ namespace ASPnetMVCCRUD.Controllers
         public async Task<IActionResult> Add()
         {
             //var employees = await mVCDemoDBContext.Employees.ToListAsync();
-            return View();
+            var e = new AddEmployeeViewModel();
+            var departments = await mVCDemoDBContext.Departments.ToListAsync();
+            var viewModel = new AddViewModel
+            {
+                emp = e,
+                Departments = departments
+            };
+            return View(viewModel);
         }
 
-        public async Task<IActionResult> Add1()
-        {
-            //var employees = await mVCDemoDBContext.Employees.ToListAsync();
-            return  View();
-        }
         [HttpPost]
-        public async  Task<IActionResult> Add(AddEmployeeViewModel addEmployeeRequest)
+        public async Task<IActionResult> Add(AddViewModel addEmployeeRequest)
         {
             var employee = new Employee()
             {
                 //Id = Guid.NewGuid(),
-                Name = addEmployeeRequest.Name,
-                Email = addEmployeeRequest.Email,
-                salary = addEmployeeRequest.salary,
-                Department = addEmployeeRequest.Department,
-                DateofBirth = addEmployeeRequest.DateofBirth,
-                Gender = addEmployeeRequest.gender,
+                Name = addEmployeeRequest.emp.Name,
+                Email = addEmployeeRequest.emp.Email,
+                salary = addEmployeeRequest.emp.salary,
+                Department = addEmployeeRequest.emp.Department,
+                DateofBirth = addEmployeeRequest.emp.DateofBirth,
+                Gender = addEmployeeRequest.emp.gender,
             };
 
             await mVCDemoDBContext.Employees.AddAsync(employee);
-             await mVCDemoDBContext.SaveChangesAsync();
+            await mVCDemoDBContext.SaveChangesAsync();
             return RedirectToAction("Index");
 
         }

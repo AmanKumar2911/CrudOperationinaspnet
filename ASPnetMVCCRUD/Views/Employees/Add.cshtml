@@ -1,45 +1,82 @@
-﻿@model ASPnetMVCCRUD.Models.AddEmployeeViewModel
-  
-@{
-}
+﻿@model AddViewModel
+
+
+
 
 <h1>Add Employee</h1>
 
-<form method="post" action="Add">  
+<form method="post" action="Add">
 
     <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
-        <input type="text" class="form-control" asp-for="Name"/>                 
+        <input type="text" class="form-control" asp-for="emp.Name" />
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
-        <input type="text" class="form-control" asp-for="Email"/>
+        <input type="text" class="form-control" asp-for="emp.Email" />
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">salary</label>
-        <input type="number" class="form-control" asp-for="salary"/>
+        <input type="number" class="form-control" asp-for="emp.salary" />
     </div>
 
-    <div class="form-group">
-        <label for="exampleInputEmail1">Department</label>
-        <input type="text" class="form-control" asp-for="Department"/>
+    <div class="input-group mb-3" style="width: 100vw;">
+        <select asp-for="emp.Department" class="custom-select" id="inputGroupSelect02">
+            <option selected>Choose...</option>
+            @foreach (var department in Model.Departments)
+            {
+                <option value="@department.DepartmentName">@department.DepartmentName</option>
+            }
+        </select>
+        <div class="input-group-append">
+            <label class="input-group-text" for="inputGroupSelect02">Select Department</label>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">DateofBirth</label>
-        <input type="date" class="form-control" asp-for="DateofBirth"/>
+        <input type="date" class="form-control" asp-for="emp.DateofBirth" />
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Gender</label>
-        <input type="text" class="form-control" asp-for="gender"/>
+        <input type="text" class="form-control" asp-for="emp.gender" />
     </div>
-    <button ty
-        pe="submit" class="btn btn-primary">Submit</button>
-    <button ty
-            pe="Delete" class="btn btn-primary">
+    <button ty pe="submit" class="btn btn-primary">Submit</button>
+    <button ty pe="Delete" class="btn btn-primary">
         Delete
     </button>
 </form>
+@*
+<script>
+    fetch('/api/Api')
+        .then(response => response.json())
+        .then(departments => {
+            const select = document.getElementById('inputGroupSelect02'); // Get the <select> element by its ID
+            select.innerHTML = ''; // Clear any existing options
+
+            // Create an option for each department and append it to the select element
+    departments.forEach(department => {
+                const option = document.createElement('option'); // Create a new <option> element
+                option.value = department.DepartmentId; // Set the value attribute
+                option.textContent = department.DepartmentName; // Set the text content
+                select.appendChild(option); // Append the option to the select element
+                });
+                console.log(departments.length)
+            departments.forEach((d) => {
+                console.log(d);
+                console.log(d.departmentName)
+                const option = document.createElement('option');
+                option.value = d.departmentName;
+                option.textContent = d.departmentName;
+                select.appendChild(option);
+            })
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+</script>
+*@
+

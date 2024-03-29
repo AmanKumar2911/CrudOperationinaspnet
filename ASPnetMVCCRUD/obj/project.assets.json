@@ -4247,19 +4247,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Zikra Fatima\\.nuget\\packages\\": {}
+    "C:\\Users\\Aman\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zikra Fatima\\Desktop\\CRUD_Project\\ASPnetMVCCRUD\\ASPnetMVCCRUD\\ASPnetMVCCRUD.csproj",
+      "projectUniqueName": "D:\\CrudOperationRohit\\CrudOperationinaspnet\\ASPnetMVCCRUD\\ASPnetMVCCRUD.csproj",
       "projectName": "ASPnetMVCCRUD",
-      "projectPath": "C:\\Users\\Zikra Fatima\\Desktop\\CRUD_Project\\ASPnetMVCCRUD\\ASPnetMVCCRUD\\ASPnetMVCCRUD.csproj",
-      "packagesPath": "C:\\Users\\Zikra Fatima\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zikra Fatima\\Desktop\\CRUD_Project\\ASPnetMVCCRUD\\ASPnetMVCCRUD\\obj\\",
+      "projectPath": "D:\\CrudOperationRohit\\CrudOperationinaspnet\\ASPnetMVCCRUD\\ASPnetMVCCRUD.csproj",
+      "packagesPath": "C:\\Users\\Aman\\.nuget\\packages\\",
+      "outputPath": "D:\\CrudOperationRohit\\CrudOperationinaspnet\\ASPnetMVCCRUD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Zikra Fatima\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Aman\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4267,6 +4267,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4324,7 +4325,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
