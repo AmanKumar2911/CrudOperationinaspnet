@@ -41,5 +41,19 @@ namespace ASPnetMVCCRUD.Controllers
             await mVCDemoContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(int? id){
+            if(id==null || id == 0){
+                return NotFound();
+            }
+            Department? departmentFromDb = mVCDemoContext.Departments.Find(id);
+            if(departmentFromDb == null)
+            {
+                return NotFound();
+            }
+            mVCDemoContext.Departments.Remove(departmentFromDb);
+            mVCDemoContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

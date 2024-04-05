@@ -1,0 +1,30 @@
+@model ASPnetMVCCRUD.Models.Domain.Employee
+
+
+<div class="boom">
+
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+        <form >
+            <label  class="label" for="chk" aria-hidden="true">Sign up</label>
+            <input  class="input" type="text" name="txt" placeholder="User name" required="">
+            <input  class="input" type="email" name="email" placeholder="Email" required="">
+            <input  class="input" type="password" name="pswd" placeholder="Password" required="">
+            <button class="button">Sign up</button>
+        </form>
+    </div>
+
+    <div class="login">
+        <form method="post">
+            <label class="label" for="chk" aria-hidden="true">Login</label>
+            <input class="input" asp-for="Email" type="email" name="email" placeholder="Email" required="">
+            <input class="input" type="password" name="pswd" placeholder="Password" required="">
+            <button type="submit" class="button">Login</button>
+        </form>
+    </div>
+</div>
+
+</div>
+

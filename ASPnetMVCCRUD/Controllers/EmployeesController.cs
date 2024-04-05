@@ -3,6 +3,7 @@ using ASPnetMVCCRUD.Models;
 using ASPnetMVCCRUD.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ASPnetMVCCRUD.Controllers
 {
@@ -26,46 +27,117 @@ namespace ASPnetMVCCRUD.Controllers
         public async Task<IActionResult> Add()
         {
             //var employees = await mVCDemoDBContext.Employees.ToListAsync();
-            return View();
-        }
-
-        public async Task<IActionResult> Add1()
-        {
-            //var employees = await mVCDemoDBContext.Employees.ToListAsync();
-            return  View();
-        }
-        [HttpPost]
-        public async  Task<IActionResult> Add(AddEmployeeViewModel addEmployeeRequest)
-        {
-            var employee = new Employee()
+            Employee e = new();
+            List<Department> dep = await mVCDemoDBContext.Departments.ToListAsync();
+            AddView obj = new AddView
             {
-                //Id = Guid.NewGuid(),
-                Name = addEmployeeRequest.Name,
-                Email = addEmployeeRequest.Email,
-                salary = addEmployeeRequest.salary,
-                Department = addEmployeeRequest.Department,
-                DateofBirth = addEmployeeRequest.DateofBirth,
-                Gender = addEmployeeRequest.gender,
+                Emp = e,
+                Departments = dep
+
             };
 
-            await mVCDemoDBContext.Employees.AddAsync(employee);
-             await mVCDemoDBContext.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+            return View(obj);
+        }
+
+        // public async Task<IActionResult> Add1()
+        // {
+        //     //var employees = await mVCDemoDBContext.Employees.ToListAsync();
+        //     return View();
+        // }
+        [HttpPost]
+        public async Task<IActionResult> Add(AddView addEmployeeRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                var employee = new Employee()
+                {
+                    //Id = Guid.NewGuid(),
+                    Name = addEmployeeRequest.Emp.Name,
+                    Email = addEmployeeRequest.Emp.Email,
+                    salary = addEmployeeRequest.Emp.salary,
+                    Department = addEmployeeRequest.Emp.Department,
+                    DateofBirth = addEmployeeRequest.Emp.DateofBirth,
+                    Gender = addEmployeeRequest.Emp.Gender,
+                };
+
+                await mVCDemoDBContext.Employees.AddAsync(employee);
+                await mVCDemoDBContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            Employee e = new();
+            List<Department> dep = await mVCDemoDBContext.Departments.ToListAsync();
+            AddView obj = new AddView
+            {
+                Emp = e,
+                Departments = dep
+
+            };
+
+            return View(obj);
 
         }
 
-        [HttpGet]
-        public async Task<IActionResult> department()
+        // [HttpGet]
+        // public async Task<IActionResult> department()
+        // {
+        //     var employees = await mVCDemoDBContext.Employees.ToListAsync();
+        //     return View(employees);
+        // }
+
+        // [HttpPost]
+        // public async Task<IActionResult> department(string str)
+        // {
+        //     var employees = await mVCDemoDBContext.Employees.ToListAsync();
+        //     return View(employees);
+        // }
+
+        public IActionResult Edit(int? id)
         {
-            var employees = await mVCDemoDBContext.Employees.ToListAsync();
-            return View(employees);
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            
+            Employee? employeeFromDb = mVCDemoDBContext.Employees.Find(id);
+            List<Department> dep = [.. mVCDemoDBContext.Departments];
+            AddView addView = new()
+            {
+                Emp = employeeFromDb,
+                Departments = dep
+            };
+            if (employeeFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(addView);
         }
 
         [HttpPost]
-        public async Task<IActionResult> department(string str)
+        public IActionResult Edit(AddView obj)
         {
-            var employees = await mVCDemoDBContext.Employees.ToListAsync();
-            return View(employees);
+            mVCDemoDBContext.Employees.Update(obj.Emp);
+            mVCDemoDBContext.SaveChanges();
+            return RedirectToAction("Index");
+            
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Employee? employeeFromDb = mVCDemoDBContext.Employees.Find(id);
+            if (employeeFromDb == null)
+            {
+                return NotFound();
+            }
+            mVCDemoDBContext.Employees.Remove(employeeFromDb);
+            mVCDemoDBContext.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
 
